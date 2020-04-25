@@ -5,6 +5,12 @@ Toolbar icons are from Josh Hughes' [Perspective Icons set](https://github.com/d
 
 ## Creating toolbar programmatically
 
+This sample coode is base on the Xcode template when you create a macOS SwiftUI app. Changes that are relevant are in these 2 files:
+- AppDelegate.swift
+- Toolbar.swift
+
+I have also created a post accompanying this sample code: https://medium.com/@billibala/swiftui-how-to-add-a-toolbar-to-window-in-macos-app-fc8da5947fe8
+
 ## References
 Sample code and documentation that help me make this sample code:
 
