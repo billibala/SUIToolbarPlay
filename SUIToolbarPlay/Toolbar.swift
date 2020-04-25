@@ -51,17 +51,8 @@ extension AppDelegate: NSToolbarDelegate {
         }
     }
     
-    /** Custom factory method to create NSToolbarItems.
-     
-         All NSToolbarItems have a unique identifier associated with them, used to tell your
-         delegate/controller what toolbar items to initialize and return at various points.
-         Typically, for a given identifier, you need to generate a copy of your "master" toolbar item,
-         and return. The function creates an NSToolbarItem with a bunch of NSToolbarItem parameters.
-     
-         It's easy to call this function repeatedly to generate lots of NSToolbarItems for your toolbar.
-     
-         The label, palettelabel, toolTip, action, and menu can all be nil, depending upon what
-         you want the item to do.
+    /**
+     Mostly base on Apple sample code: https://developer.apple.com/documentation/appkit/touch_bar/integrating_a_toolbar_and_touch_bar_into_your_app
      */
     func customToolbarItem(
         itemIdentifier: NSToolbarItem.Identifier,
@@ -75,20 +66,22 @@ extension AppDelegate: NSToolbarDelegate {
         toolbarItem.label = label
         toolbarItem.paletteLabel = paletteLabel
         toolbarItem.toolTip = toolTip
-        toolbarItem.target = self
+        /**
+         You don't need to set a `target` if you know what you are doing.
+         
+         In this example, AppDelegate is also the toolbar delegate.
+         
+         Since AppDelegate is not a responder, implementing an IBAction in the AppDelegate class has no effect. Try using a subclass of NSWindow or NSWindowController to implement your action methods and use them as the toolbar delegate instead.
+         
+         Ref: https://developer.apple.com/documentation/appkit/nstoolbaritem/1525982-target
+         
+         From doc:
+         
+         If target is nil, the toolbar will call action and attempt to invoke the action on the first responder and, failing that, pass the action up the responder chain.
+         */
+//        toolbarItem.target = self
+//        toolbarItem.action = #selector(methodName)
         
-        // Set the right attribute, depending on if we were given an image or a view.
-//        if itemContent is NSImage {
-//            if let image = itemContent as? NSImage {
-//                toolbarItem.image = image
-//            }
-//        } else if itemContent is NSView {
-//            if let view = itemContent as? NSView {
-//                toolbarItem.view = view
-//            }
-//        } else {
-//            assertionFailure("Invalid itemContent: object")
-//        }
         toolbarItem.view = itemContent
         
         // We actually need an NSMenuItem here, so we construct one.
