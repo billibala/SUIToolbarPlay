@@ -18,6 +18,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         // Create the SwiftUI view that provides the window contents.
         let contentView = ContentView()
         
+        // Toolbar **needs** a delegate
         NSToolbar.taskListToolbar.delegate = self
 
         // Create the window and set the content view. 
@@ -26,6 +27,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             styleMask: [.titled, .closable, .miniaturizable, .resizable, .fullSizeContentView],
             backing: .buffered, defer: false)
         window.center()
+        // Assign the toolbar to the window object
         window.toolbar = .taskListToolbar
         window.titleVisibility = .hidden
         window.setFrameAutosaveName("Main Window")
